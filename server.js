@@ -5,6 +5,7 @@ const
   logger = require('morgan'),
   bodyParser = require('body-parser'),
   mongoose = require('mongoose'),
+  usersRoutes = require('./routes/users.js')
   cors = require('cors'),
   mongoURL = process.env.MONGO_URL,
   PORT = process.env.PORT
@@ -24,6 +25,8 @@ app.use(bodyParser.urlencoded({extends:false}))
 app.get('/', (req, res)=>{
   res.json({message: 'server root'})
 })
+
+app.use('/api/users', usersRoutes)
 
 app.listen(PORT, (err)=>{
   console.log(err || `Server running on port ${PORT}`);
