@@ -5,7 +5,7 @@ const
     name: String,
     email: String,
     image: String,
-    password: ({type: String, select: false})
+    password: {type: String, select: false}
   })
 
   bandSchema.methods.generateHash = function(password){

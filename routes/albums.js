@@ -3,7 +3,7 @@ const
   Album = require('../models/Album.js'),
   authorize = require('../config/serverAuth').authorize,
   albumsRouter = new express.Router()
-  // songsRoutes = require('./songs.js')
+  songsRoutes = require('./songs.js')
 
 
 albumsRouter.use(authorize)
@@ -17,7 +17,7 @@ albumsRouter.route('/')
   })
   .post((req, res)=>{
     const newAlbum = new Album(req.body)
-    newAlbum.user = req.decoded
+    newAlbum.band = req.decoded
     newAlbum.save((err, album)=>{
       if(err) return console.log(err);
       res.json({success: true, message: 'New album created', album})
@@ -47,6 +47,6 @@ albumsRouter.route('/:id')
     })
   })
 
-// albumRouter.use('/:id/songs', songsRoutes)
+albumsRouter.use('/:id/songs', songsRoutes)
 
 module.exports = albumsRouter

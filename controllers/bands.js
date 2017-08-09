@@ -18,7 +18,7 @@ function index(req, res){
 }
 
 function show(req, res){
-  Band.findById(req,params.id).populate('albums').exec((err, band)=>{
+  Band.findById(req.params.id).populate('albums').exec((err, band)=>{
     if(err) return console.log(band);
     res.json(band)
   })
